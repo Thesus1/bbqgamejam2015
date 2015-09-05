@@ -3,7 +3,9 @@ using System.Collections;
 
 public class Movements : MonoBehaviour
 {
-	float SPEED = 2.5f;
+	float SPEED = 3.0f;
+	float DEADZONE_PAD = 0.8f;
+	float MIN_DEADZONE_PAD = 0.6f;
 	Vector3 _movementToApply;
 
 	// Use this for initialization
@@ -17,25 +19,22 @@ public class Movements : MonoBehaviour
 	{
 		_movementToApply = new Vector3 ();
 
-		if(Input.GetKey(KeyCode.JoystickButton0))
+		if(Input.GetKeyDown(KeyCode.JoystickButton0))
 		{
+			fire();
 			Debug.Log("A press");
-			moveDown();
 		}
 		if(Input.GetKey (KeyCode.JoystickButton1))
 		{
 			Debug.Log("B press");
-			moveRight();
 		}
 		if(Input.GetKey (KeyCode.JoystickButton2))
 		{
 			Debug.Log("X press");
-			moveLeft();
 		}
 		if(Input.GetKey (KeyCode.JoystickButton3))
 		{
 			Debug.Log("Y press");
-			moveUp();
 		}
 		if(Input.GetKey (KeyCode.JoystickButton4))
 		{
@@ -60,6 +59,23 @@ public class Movements : MonoBehaviour
 		if(Input.GetKey (KeyCode.JoystickButton9))
 		{
 			Debug.Log("L Stick press");
+		}
+
+		/// Sticks
+		float axisVertical = Input.GetAxis ("Vertical");
+		float axisHorizontal = Input.GetAxis ("Horizontal");
+
+		if(Mathf.Abs(axisVertical) > DEADZONE_PAD || Mathf.Abs(axisHorizontal) > DEADZONE_PAD)
+		{
+			if(Mathf.Abs(axisVertical) > MIN_DEADZONE_PAD)
+			{
+				_movementToApply.y = -axisVertical;
+			}
+
+			if(Mathf.Abs(axisHorizontal) > MIN_DEADZONE_PAD)
+			{
+				_movementToApply.x = axisHorizontal;
+			}
 		}
 
 		applyMovement (_movementToApply);
@@ -91,5 +107,11 @@ public class Movements : MonoBehaviour
 		Vector3 movementWithSpeed = axis * SPEED;
 		movementWithSpeed *= Time.deltaTime;
 		transform.Translate (movementWithSpeed);
+	}
+
+
+	void fire()
+	{
+		Debug.Log ("Fire !");
 	}
 }
