@@ -16,8 +16,12 @@ Platform assembly: C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\Uni
 Loading C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
 Loading C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: C:\Users\Loïc\Documents\bbqgamejam2015\test_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.072 seconds
+- Completed reload, in  0.110 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
