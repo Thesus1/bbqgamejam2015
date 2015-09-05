@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Collections.Generic;
 
-public class ScrollingScript : MonoBehaviour {
+public class ScrollingScript : MonoBehaviour
+{
 	private List<Transform> backgroundPart;
 
 	bool IsVisibleFromCamera(Renderer renderer, Camera camera)

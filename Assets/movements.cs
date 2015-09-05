@@ -7,14 +7,67 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-namespace AssemblyCSharp
+using UnityEngine;
+using System.Collections;
+
+public class Movements  : MonoBehaviour
 {
-	public class movements
+	public Movements ()
 	{
-		public movements ()
-		{
-		}
+	}
+
+	float SPEED = 3.0f;
+	Vector3 _movementToApply;
+	
+	protected void initMovement()
+	{
+		_movementToApply = new Vector3 ();
+	}
+	
+	protected void moveUp()
+	{
+		_movementToApply.y += 1;
+	}
+	
+	protected void moveDown()
+	{
+		_movementToApply.y += -1;
+	}
+	
+	protected void moveLeft()
+	{
+		_movementToApply.x += -1;
+	}
+	
+	protected void moveRight()
+	{
+		_movementToApply.x += 1;
+	}
+	
+	
+	protected void moveHorizontal(float movement)
+	{
+		_movementToApply.x = movement;
+	}
+	
+	
+	protected void moveVertical(float movement)
+	{
+		_movementToApply.y = -movement;
+	}
+	
+	
+	protected void applyMovement(Vector3 axis)
+	{
+		Vector3 movementWithSpeed = axis * SPEED;
+		movementWithSpeed *= Time.deltaTime;
+		transform.Translate (movementWithSpeed);
+	}
+	
+	
+	protected void updateMovement()
+	{
+		applyMovement (_movementToApply);
 	}
 }
 
