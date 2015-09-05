@@ -7,15 +7,18 @@ public class Player : Ship
 	int FIRE_PRESSED = 2;
 	
 	float DEADZONE_PAD = 0.8f;
-	float MIN_DEADZONE_PAD = 0.6f;
+	float MIN_DEADZONE_PAD = 0.7f;
 
 	int _fire_mode;
+
 
 	// Use this for initialization
 	void Start ()
 	{
 		Debug.Log ("Start called");
-		_fire_mode = FIRE_KEY_DOWN;
+		_fire_mode = FIRE_PRESSED;
+		_weapon = new Weapon (this);
+		setLimitedTodScreen (true);
 	}
 
 
@@ -93,6 +96,6 @@ public class Player : Ship
 			}
 		}
 
-		updateMovement();
+		applyMovement();
 	}
 }

@@ -12,35 +12,84 @@ using System.Collections;
 
 public class Ship : Movements
 {
+	public float DEFAULT_SIZE_VERTICAL = 4.58f;
+	public float DEFAULT_SIZE_HORIZONTAL = 8.55f;
+	float _sizeVertical;
+	float _sizeHorizontal;
+	bool _isLimitedToScreen = false;
+
+	protected Weapon _weapon;
+
 	public Ship ()
 	{
-
+		_sizeVertical = DEFAULT_SIZE_VERTICAL;
+		_sizeHorizontal = DEFAULT_SIZE_HORIZONTAL;
+		_isLimitedToScreen = false;
 	}
 
-	protected void applyMovement(Vector3 axis)
+
+	public void setLimitedTodScreen(bool limited)
 	{
-		Vector3 movementWithSpeed = axis * SPEED;
-		movementWithSpeed *= Time.deltaTime;
+		_isLimitedToScreen = limited;
+	}
 
-		float x_r = renderer.transform.position.x;
-		float x_c = camera.transform.position.x;
-		float diff_x = (x_c - x_r);
 
-		float y_r = renderer.transform.position.y;
-		float y_c = camera.transform.position.y;
-		float diff_y = (y_c - y_r);
+	public void setSize(float sizeVertical, float sizeHorizontal)
+	{
+		_sizeVertical = sizeVertical;
+		_sizeHorizontal = sizeHorizontal;
+	}
 
-		if (diff_x > movementWithSpeed.x)
+
+	protected void applyMovement()
+	{
+		if (_isLimitedToScreen)
 		{
-			axis.x = 0;
+			Vector3 movementWithSpeed = _movementToApply * SPEED;
+			movementWithSpeed *= Time.deltaTime;
+
+			if (_movementToApply.y > 0 && transform.position.y > _sizeVertical) {
+				_movementToApply.y = 0;
+			} else if (_movementToApply.y < 0 && transform.position.y < -_sizeVertical) {
+				_movementToApply.y = 0;
+			}
+
+			if (_movementToApply.x > 0 && transform.position.x > _sizeHorizontal) {
+				_movementToApply.x = 0;
+			} else if (_movementToApply.x < 0 && transform.position.x < -_sizeHorizontal) {
+				_movementToApply.x = 0;
+			}
 		}
 
+		base.applyMovement();
 	}
 	
 	
 	protected void fire()
 	{
-		Debug.Log ("Fire !");
+		if (_weapon != null)
+		{
+			_weapon.fire();
+		}
+		else
+		{
+			Debug.Log("_weapon is null");
+		}
+	}
+
+	public void createProjectile(GameObject projectile)
+	{
+		Object newBullet = Instantiate (projectile, transform.position, transform.rotation);
+
+		if(newBullet is GameObject)
+		{
+			Projectile scriptBullet = ((GameObject) newBullet).GetComponent<Projectile>();
+
+			if(scriptBullet != null)
+			{
+				scriptBullet.startFire();
+			}
+		}
 	}
 }
 

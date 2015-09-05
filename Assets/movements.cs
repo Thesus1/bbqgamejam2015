@@ -12,12 +12,8 @@ using System.Collections;
 
 public class Movements  : MonoBehaviour
 {
-	public Movements ()
-	{
-	}
-
-	float SPEED = 3.0f;
-	Vector3 _movementToApply;
+	protected float SPEED = 3.0f;
+	protected Vector3 _movementToApply;
 	
 	protected void initMovement()
 	{
@@ -57,17 +53,11 @@ public class Movements  : MonoBehaviour
 	}
 	
 	
-	protected void applyMovement(Vector3 axis)
+	protected void applyMovement()
 	{
-		Vector3 movementWithSpeed = axis * SPEED;
+		Vector3 movementWithSpeed = _movementToApply * SPEED;
 		movementWithSpeed *= Time.deltaTime;
 		transform.Translate (movementWithSpeed);
-	}
-	
-	
-	protected void updateMovement()
-	{
-		applyMovement (_movementToApply);
 	}
 }
 
