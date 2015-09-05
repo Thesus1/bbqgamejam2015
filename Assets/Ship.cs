@@ -7,14 +7,40 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-namespace AssemblyCSharp
+using UnityEngine;
+using System.Collections;
+
+public class Ship : Movements
 {
-	public class Ship
+	public Ship ()
 	{
-		public Ship ()
+
+	}
+
+	protected void applyMovement(Vector3 axis)
+	{
+		Vector3 movementWithSpeed = axis * SPEED;
+		movementWithSpeed *= Time.deltaTime;
+
+		float x_r = renderer.transform.position.x;
+		float x_c = camera.transform.position.x;
+		float diff_x = (x_c - x_r);
+
+		float y_r = renderer.transform.position.y;
+		float y_c = camera.transform.position.y;
+		float diff_y = (y_c - y_r);
+
+		if (diff_x > movementWithSpeed.x)
 		{
+			axis.x = 0;
 		}
+
+	}
+	
+	
+	protected void fire()
+	{
+		Debug.Log ("Fire !");
 	}
 }
 

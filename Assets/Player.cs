@@ -1,17 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Ship;
 
-public class Movements : Ship
+public class Player : Ship
 {
 	int FIRE_KEY_DOWN = 1;
 	int FIRE_PRESSED = 2;
-
-	float SPEED = 3.0f;
+	
 	float DEADZONE_PAD = 0.8f;
 	float MIN_DEADZONE_PAD = 0.6f;
-
-	Vector3 _movementToApply;
 
 	int _fire_mode;
 
@@ -26,13 +22,13 @@ public class Movements : Ship
 	// Update is called once per frame
 	void Update ()
 	{
-		_movementToApply = new Vector3 ();
+		initMovement();
 
 		if(_fire_mode == FIRE_KEY_DOWN)
 		{
 			if (Input.GetKeyDown (KeyCode.JoystickButton0))
 			{
-				fire ();
+				fire();
 			}
 		}
 		else if (_fire_mode == FIRE_PRESSED)
@@ -88,49 +84,15 @@ public class Movements : Ship
 		{
 			if(Mathf.Abs(axisVertical) > MIN_DEADZONE_PAD)
 			{
-				_movementToApply.y = -axisVertical;
+				moveVertical(axisVertical);
 			}
 
 			if(Mathf.Abs(axisHorizontal) > MIN_DEADZONE_PAD)
 			{
-				_movementToApply.x = axisHorizontal;
+				moveHorizontal(axisHorizontal);
 			}
 		}
 
-		applyMovement (_movementToApply);
-	}
-
-	void moveUp()
-	{
-		_movementToApply.y += 1;
-	}
-
-	void moveDown()
-	{
-		_movementToApply.y += -1;
-	}
-
-	void moveLeft()
-	{
-		_movementToApply.x += -1;
-	}
-
-	void moveRight()
-	{
-		_movementToApply.x += 1;
-	}
-
-
-	void applyMovement(Vector3 axis)
-	{
-		Vector3 movementWithSpeed = axis * SPEED;
-		movementWithSpeed *= Time.deltaTime;
-		transform.Translate (movementWithSpeed);
-	}
-
-
-	void fire()
-	{
-		Debug.Log ("Fire !");
+		updateMovement();
 	}
 }
