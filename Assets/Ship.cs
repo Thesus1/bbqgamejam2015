@@ -26,8 +26,7 @@ public class Ship : Movements
 		_sizeHorizontal = DEFAULT_SIZE_HORIZONTAL;
 		_isLimitedToScreen = false;
 	}
-
-
+	
 	public void setLimitedTodScreen(bool limited)
 	{
 		_isLimitedToScreen = limited;
@@ -60,10 +59,9 @@ public class Ship : Movements
 				_movementToApply.x = 0;
 			}
 		}
-
 		base.applyMovement();
 	}
-	
+
 	
 	protected void fire()
 	{
@@ -92,4 +90,3 @@ public class Ship : Movements
 		}
 	}
 }
-
