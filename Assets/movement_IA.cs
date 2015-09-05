@@ -26,10 +26,10 @@ public class movement_IA : MonoBehaviour {
 			goUp = true;
 		}
 
-		if (!IsVisibleFromCamera (GetComponent<Renderer> (), Camera.main) || transform.position.x > 7) {
+		if (!IsVisibleFromCamera (GetComponent<Renderer> (), Camera.main) || transform.position.x > 5) {
 			goAhead = true;
 			wait_time = Time.time + 3f;
-		} else if (!(transform.position.y > 7) && Time.time >= wait_time) {
+		} else if (!(transform.position.y > 5) && Time.time >= wait_time) {
 			goAhead = true;
 			back = true;
 		} else goAhead = false;

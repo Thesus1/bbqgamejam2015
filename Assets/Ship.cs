@@ -17,7 +17,7 @@ public class Ship : Movements
 
 	}
 
-	protected void applyMovement(Vector3 axis)
+	/*protected void applyMovement(Vector3 axis)
 	{
 		Vector3 movementWithSpeed = axis * SPEED;
 		movementWithSpeed *= Time.deltaTime;
@@ -35,7 +35,7 @@ public class Ship : Movements
 			axis.x = 0;
 		}
 
-	}
+	} */
 	
 	
 	protected void fire()
@@ -43,4 +43,3 @@ public class Ship : Movements
 		Debug.Log ("Fire !");
 	}
 }
-
