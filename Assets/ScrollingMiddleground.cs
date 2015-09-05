@@ -42,7 +42,7 @@ public class ScrollingMiddleground : MonoBehaviour
 				
 				Vector3 lastPosition = lastChild.transform.position;
 				Vector3 lastSize = (lastChild.GetComponent<Renderer>().bounds.max - lastChild.GetComponent<Renderer>().bounds.min);
-				
+
 				firstChild.position = new Vector3(lastPosition.x + lastSize.x + rand.Next () % 15,
 				                                  firstChild.position.y,
 				                                  firstChild.position.z);
