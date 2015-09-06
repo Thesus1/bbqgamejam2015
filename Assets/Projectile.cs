@@ -23,12 +23,18 @@ public class Projectile : MonoBehaviour
 	public bool isEnemy;
 	public int health;
 
+	private AudioSource source;
+
 
 	public Projectile ()
 	{
 		_isfire = false;
 		_direction = DIRECTION_LEFT;
 		_speed = SPEED;
+	}
+	
+	void Awake () {	
+		source = GetComponent<AudioSource>();
 	}
 
 
@@ -54,6 +60,7 @@ public class Projectile : MonoBehaviour
 		}
 		else transform.Translate(new Vector3(-0.8f, 0, 0));
 		Destroy (this.gameObject, 10);
+		source.Play ();
 	}
 
 
@@ -89,6 +96,8 @@ public class Projectile : MonoBehaviour
 		if(ship != null)
 		{
 			if(ship.isEnemy != isEnemy){
+				Level lvl = GameObject.Find ("Level").GetComponent<Level> ();
+				if(lvl != null) lvl.explosion.Play();
 				ship.damaged(damage);
 				Destroy (this.gameObject);
 			}

@@ -16,7 +16,7 @@ public class Player : Ship
 	Weapon _canon;
 
 	public int level = 3;
-
+	
 	// Use this for initialization
 	void Start ()
 	{
@@ -34,8 +34,7 @@ public class Player : Ship
 		_canon = new Weapon (this, 1f, "canon");
 		_canon.setDirection (Projectile.DIRECTION_RIGHT);
 	}
-
-
+	
 	// Update is called once per frame
 	void Update ()
 	{
@@ -79,7 +78,9 @@ public class Player : Ship
 		if(Input.GetKey (KeyCode.JoystickButton2) || Input.GetKey (KeyCode.E))
 		{
 			type_weapon = 3;
-			if(level < 3) _minigun.fire ();
+			if(level < 3) {
+				_minigun.fire ();
+			}
 		}
 
 		//Y
