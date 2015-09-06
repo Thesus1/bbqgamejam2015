@@ -21,6 +21,7 @@ public class Ship : Movements
 	public bool isEnemy;
 	public int health = 1;
 	public Weapon _weapon;
+	public int type_weapon;
 
 	public Ship ()
 	{
@@ -87,21 +88,28 @@ public class Ship : Movements
 
 	public void createProjectile(GameObject projectile, int direction)
 	{
-		Object newBullet = Instantiate (projectile, transform.position, transform.rotation);
-
-		if(newBullet is GameObject)
+		int nbrBullet = 1;
+		if(type_weapon == 5) nbrBullet = 3;
+		for(int a = 0; a < nbrBullet; a++)
 		{
-			Projectile scriptBullet = ((GameObject) newBullet).GetComponent<Projectile>();
+			Vector3 pos = transform.position;
+			pos.y += a * 0.3f;
+			if(a == 1) pos.x += 0.3f;
+			Object newBullet = Instantiate (projectile, pos, transform.rotation);
 
-			if(scriptBullet != null)
+			if(newBullet is GameObject)
 			{
-				scriptBullet.isEnemy = isEnemy;
-				if(direction != 0)
-				{
-					scriptBullet.setDirection(direction);
-				}
+				Projectile scriptBullet = ((GameObject) newBullet).GetComponent<Projectile>();
 
-				scriptBullet.startFire();
+				if(scriptBullet != null)
+				{
+					scriptBullet.isEnemy = isEnemy;
+					if(direction != 0)
+					{
+						scriptBullet.setDirection(direction);
+					}
+					scriptBullet.startFire();
+				}
 			}
 		}
 	}

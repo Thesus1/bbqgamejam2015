@@ -9,7 +9,6 @@ public class Ennemi : Ship {
 	public float boundTop;
 	public float boundDown;
 	public float timeToAttack;
-	public int type_weapon;
 	
 	void Start(){
 		isEnemy = true;
@@ -28,6 +27,10 @@ public class Ennemi : Ship {
 			
 		case 4:
 			_weapon = new Weapon (this, 2f, "mine");
+			break;
+			
+		case 5:
+			_weapon = new Weapon (this, 0.5f, "shootgun");
 			break;
 		}
 	}

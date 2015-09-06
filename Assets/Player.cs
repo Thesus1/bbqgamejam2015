@@ -17,7 +17,8 @@ public class Player : Ship
 	{
 		Debug.Log ("Start called");
 		_fire_mode = FIRE_PRESSED;
-		_weapon = new Weapon (this, 0.25f, "gun");
+		type_weapon = 5;
+		_weapon = new Weapon (this, 0.25f, "shootgun");
 		_weapon.setDirection (Projectile.DIRECTION_RIGHT);
 		setLimitedTodScreen (true);
 		isEnemy = false;
