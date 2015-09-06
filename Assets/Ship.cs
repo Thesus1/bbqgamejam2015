@@ -18,7 +18,8 @@ public class Ship : Movements
 	float _sizeVertical;
 	float _sizeHorizontal;
 	bool _isLimitedToScreen = false;
-
+	public bool isEnemy;
+	public int health = 1;
 	protected Weapon _weapon;
 
 	public Ship ()
@@ -40,6 +41,14 @@ public class Ship : Movements
 		_sizeHorizontal = sizeHorizontal;
 	}
 
+	public void damaged (int d)
+	{
+		health -= d;
+		if (health <= 0) {
+			SpecialEffectsHelper.Instance.Explosion(transform.position);
+			Destroy(this.gameObject);
+		}
+	}
 
 	protected void applyMovement()
 	{
@@ -86,6 +95,8 @@ public class Ship : Movements
 
 			if(scriptBullet != null)
 			{
+				scriptBullet.isEnemy = isEnemy;
+				scriptBullet.damage = _weapon.damage;
 				if(direction != 0)
 				{
 					scriptBullet.setDirection(direction);

@@ -9,11 +9,18 @@ public class Ennemi : Ship {
 	public float boundTop;
 	public float boundDown;
 	public float timeToAttack;
-
-	public Ennemi() {
+	public int type_weapon;
+	
+	void Start(){
 		boundTop = 5f;
 		boundDown = -3f;
 		timeToAttack = 5f;
+		isEnemy = true;
+		switch (type_weapon) {
+		case 1:
+			_weapon = new Weapon (this, 5);
+			break;
+		}
 	}
 
 	// Update is called once per frame
@@ -33,6 +40,9 @@ public class Ennemi : Ship {
 
 		if (_wait == true && Time.time > timeToGo) {
 			_back = true;
+			Destroy(this.gameObject, 20);
+		} else if (_wait == true && Time.time < timeToGo) {
+			fire ();
 		}
 
 		if (_back == true) moveLeft ();

@@ -48,7 +48,7 @@ public class SpecialEffectsHelper : MonoBehaviour
 		// Destruction programmée
 		Destroy(
 			newParticleSystem.gameObject,
-			newParticleSystem.startLifetime
+			10
 			);
 		
 		return newParticleSystem;
