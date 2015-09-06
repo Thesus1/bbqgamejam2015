@@ -10,8 +10,10 @@ public class Ennemi : Ship {
 	public float boundDown;
 	public float timeToAttack;
 	protected float _horizontal_pos;
+	protected bool _onlyHorizontal;
 
 	protected void Start(){
+		_onlyHorizontal = false;
 		boundTop = 5f;
 		boundDown = -3f;
 		timeToAttack = 5f;
@@ -52,6 +54,8 @@ public class Ennemi : Ship {
 			timeToGo = Time.time + timeToAttack;
 		}
 
+		if (_onlyHorizontal == false)
+		{
 		if(_back == false) {
 			if(_moveUp == false && transform.position.y < boundDown) _moveUp = true; 
 			else if(_moveUp == true && transform.position.y > boundTop) _moveUp = false;
@@ -67,6 +71,7 @@ public class Ennemi : Ship {
 		if (_back == true) moveLeft ();
 		if (_moveUp == true) moveUp ();
 		else moveDown ();
+		}
 
 		applyMovement ();
 	}

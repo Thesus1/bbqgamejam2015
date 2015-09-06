@@ -13,12 +13,17 @@ using System.Collections;
 
 public class Ennemi_pizza : Ennemi
 {
+	public Ennemi_pizza()
+	{
+	}
+
 	void Start()
 	{
 		base.Start ();
 
 		timeToAttack = 15f;
 	}
+
 
 	void Update()
 	{

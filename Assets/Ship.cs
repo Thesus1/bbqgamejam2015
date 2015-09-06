@@ -51,7 +51,7 @@ public class Ship : Movements
 
 				Level mainLevel = GameObject.Find("Level").GetComponent<Level> ();
 				
-				if (mainLevel != null)
+				if (mainLevel != null && this is Player)
 				{
 					mainLevel.playerDied();
 				}
@@ -100,6 +100,7 @@ public class Ship : Movements
 	{
 		int nbrBullet = 1;
 		if(type_weapon == 5) nbrBullet = 3;
+
 		for(int a = 0; a < nbrBullet; a++)
 		{
 			Vector3 pos = transform.position;

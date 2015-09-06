@@ -32,6 +32,7 @@ public class Level : MonoBehaviour {
 
 	public void playerDied()
 	{
+
 		Debug.Log ("Player died");
 		timeRestart = Time.realtimeSinceStartup + 4;
 	}
