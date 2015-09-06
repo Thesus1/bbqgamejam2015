@@ -10,12 +10,14 @@ public class Ennemi : Ship {
 	public float boundDown;
 	public float timeToAttack;
 	public int type_weapon;
+	protected float _horizontal_pos;
 	
-	void Start(){
+	protected void Start(){
 		boundTop = 5f;
 		boundDown = -3f;
 		timeToAttack = 5f;
 		isEnemy = true;
+		_horizontal_pos = 5.0f;
 		switch (type_weapon) {
 		case 1:
 			_weapon = new Weapon (this, 5);
@@ -24,10 +26,12 @@ public class Ennemi : Ship {
 	}
 
 	// Update is called once per frame
-	void Update () {
+	protected void Update () {
 		_movementToApply = new Vector3 ();
 
-		if (transform.position.x > 5) moveLeft ();
+		if (transform.position.x > _horizontal_pos) {
+			moveLeft ();
+		}
 		else if(_wait == false) {
 			_wait = true;
 			timeToGo = Time.time + timeToAttack;

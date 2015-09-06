@@ -7,14 +7,20 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-namespace AssemblyCSharp
+using UnityEngine;
+using System.Collections;
+
+public class Ennemi_beignet : Ennemi
 {
-	public class Ennemi_beignet
+	public Ennemi_beignet ()
+	{}
+
+	void Start()
 	{
-		public Ennemi_beignet ()
-		{
-		}
+		base.Start ();
+
+		_horizontal_pos = Random.Range (0.0f, 5.0f);
+		boundTop = Random.Range (2.0f, 5.0f);
+		boundDown = Random.Range (-3.0f, -2.0f);
 	}
 }
-

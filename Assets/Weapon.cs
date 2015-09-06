@@ -17,7 +17,7 @@ public class Weapon
 	GameObject _projectile;
 	Ship _parent;
 	int _projectileDirection;
-	int damage;
+	public int damage;
 
 	public Weapon (Ship parent, int d)
 	{

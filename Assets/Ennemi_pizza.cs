@@ -7,14 +7,24 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-namespace AssemblyCSharp
+using UnityEngine;
+using System.Collections;
+
+
+public class Ennemi_pizza : Ennemi
 {
-	public class Ennemi_pizza
+	void Start()
 	{
-		public Ennemi_pizza ()
-		{
-		}
+		base.Start ();
+
+		_speed = 0.5f;
+		timeToAttack = 15f;
+	}
+
+	void Update()
+	{
+		base.Update ();
+
+
 	}
 }
-

@@ -12,8 +12,14 @@ using System.Collections;
 
 public class Movements  : MonoBehaviour
 {
-	public float SPEED = 3.0f;
+	public const float SPEED = 3.0f;
+	public float _speed; 
 	protected Vector3 _movementToApply;
+
+	public Movements()
+	{
+		_speed = SPEED;
+	}
 	
 	protected void initMovement()
 	{
