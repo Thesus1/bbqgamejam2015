@@ -17,7 +17,6 @@ public class Ennemi_pizza : Ennemi
 	{
 		base.Start ();
 
-		_speed = 0.5f;
 		timeToAttack = 15f;
 	}
 
