@@ -11,7 +11,7 @@ public class Ennemi : Ship {
 	public float timeToAttack;
 	public int type_weapon;
 	protected float _horizontal_pos;
-	
+
 	protected void Start(){
 		boundTop = 5f;
 		boundDown = -3f;
@@ -20,7 +20,19 @@ public class Ennemi : Ship {
 		_horizontal_pos = 5.0f;
 		switch (type_weapon) {
 		case 1:
-			_weapon = new Weapon (this, 5);
+			_weapon = new Weapon (this, 0.4f, "gun");
+			break;
+		
+		case 2:
+			_weapon = new Weapon (this, 1f, "canon");
+			break;
+			
+		case 3:
+			_weapon = new Weapon (this, 0.15f, "minigun");
+			break;
+			
+		case 4:
+			_weapon = new Weapon (this, 2f, "mine");
 			break;
 		}
 	}

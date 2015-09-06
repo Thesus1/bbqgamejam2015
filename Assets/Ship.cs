@@ -20,7 +20,7 @@ public class Ship : Movements
 	bool _isLimitedToScreen = false;
 	public bool isEnemy;
 	public int health = 1;
-	protected Weapon _weapon;
+	public Weapon _weapon;
 
 	public Ship ()
 	{
@@ -98,7 +98,6 @@ public class Ship : Movements
 			if(scriptBullet != null)
 			{
 				scriptBullet.isEnemy = isEnemy;
-				scriptBullet.damage = _weapon.damage;
 				if(direction != 0)
 				{
 					scriptBullet.setDirection(direction);

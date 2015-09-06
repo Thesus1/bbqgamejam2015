@@ -19,8 +19,9 @@ public class Projectile : MonoBehaviour
 	public float _speed;
 	bool _isfire;
 	int _direction;
-	public int damage = 0;
+	public int damage;
 	public bool isEnemy;
+	public int health;
 
 
 	public Projectile ()
@@ -70,17 +71,16 @@ public class Projectile : MonoBehaviour
 			Vector3 movementWithSpeed = new Vector3(realDirection, 0, 0);
 			movementWithSpeed *= Time.deltaTime;
 			transform.Translate (movementWithSpeed);
-
-			if(_direction == DIRECTION_RIGHT && transform.position.x > 10f)
-			{
-				Destroy(this);
-			}
-
-			if(_direction == DIRECTION_LEFT && transform.position.x < -10f)
-			{
-				Destroy(this);
-			}
 		}
+	}
+
+	bool damaged(int d)
+	{
+		health -= d;
+		if (health <= 0)
+			return true;
+		else
+			return false;
 	}
 
 	void OnTriggerEnter2D(Collider2D collider)
@@ -90,6 +90,14 @@ public class Projectile : MonoBehaviour
 		{
 			if(ship.isEnemy != isEnemy){
 				ship.damaged(damage);
+				Destroy (this.gameObject);
+			}
+		}
+
+		Projectile projectile = collider.gameObject.GetComponent<Projectile> ();
+		if (projectile != null) {
+			if(damaged (projectile.damage)) {
+				if(damage >= 15) SpecialEffectsHelper.Instance.Explosion(transform.position);
 				Destroy (this.gameObject);
 			}
 		}
