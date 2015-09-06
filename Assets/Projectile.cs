@@ -40,6 +40,7 @@ public class Projectile : MonoBehaviour
 		_direction = direction;
 	}
 
+
 	public void startFire()
 	{
 		_isfire = true;
@@ -89,6 +90,7 @@ public class Projectile : MonoBehaviour
 
 		if(ennemy != null)
 		{
+			SpecialEffectsHelper.Instance.Explosion(ennemy.transform.position);
 			Destroy(ennemy.gameObject);
 			Destroy(gameObject);
 		}
