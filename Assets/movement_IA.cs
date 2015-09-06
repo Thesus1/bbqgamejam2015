@@ -22,7 +22,7 @@ public class movement_IA : MonoBehaviour {
 
 		if (goUp == true && back == false && transform.position.y > 5f) {
 			goUp = false;
-		} else if (goUp == false && back == false && transform.position.y < -5f) {
+		} else if (goUp == false && back == false && transform.position.y < -3f) {
 			goUp = true;
 		}
 
@@ -32,6 +32,7 @@ public class movement_IA : MonoBehaviour {
 		} else if (!(transform.position.y > 5) && Time.time >= wait_time) {
 			goAhead = true;
 			back = true;
+			SpecialEffectsHelper.Instance.Explosion(transform.position);
 		} else goAhead = false;
 
 		if(goAhead == true) moveLeft ();
