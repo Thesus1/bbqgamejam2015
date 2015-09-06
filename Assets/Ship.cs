@@ -12,9 +12,9 @@ using System.Collections;
 
 public class Ship : Movements
 {
-	public float DEFAULT_SIZE_VERTICAL_UP = 4.58f;
-	public float DEFAULT_SIZE_VERTICAL_DOWN = 3f;
-	public float DEFAULT_SIZE_HORIZONTAL = 8.55f;
+	public const float DEFAULT_SIZE_VERTICAL_UP = 4.58f;
+	public const float DEFAULT_SIZE_VERTICAL_DOWN = 3f;
+	public const float DEFAULT_SIZE_HORIZONTAL = 8.55f;
 	float _sizeVertical;
 	float _sizeHorizontal;
 	bool _isLimitedToScreen = false;

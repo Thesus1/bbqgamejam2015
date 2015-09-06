@@ -85,7 +85,7 @@ public class Projectile : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		movement_IA ennemy = collider.gameObject.GetComponent<movement_IA> ();
+		Ennemi ennemy = collider.gameObject.GetComponent<Ennemi> ();
 
 		if(ennemy != null)
 		{
