@@ -48,6 +48,8 @@ public class Ship : Movements
 			health -= d;
 			if (health <= 0) {
 				SpecialEffectsHelper.Instance.Explosion (transform.position);
+				Level lvl = GameObject.Find ("Level").GetComponent<Level> ();
+				if(lvl != null) lvl.explosion.Play();
 
 				Level mainLevel = GameObject.Find("Level").GetComponent<Level> ();
 				
@@ -55,7 +57,6 @@ public class Ship : Movements
 				{
 					mainLevel.playerDied();
 				}
-
 				Destroy (this.gameObject);
 			}
 		}

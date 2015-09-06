@@ -4,6 +4,7 @@ using System.Collections;
 public class Level : MonoBehaviour {
 
 	float timeRestart;
+	public AudioSource explosion;
 
 	// Use this for initialization
 	void Start () {
@@ -28,6 +29,10 @@ public class Level : MonoBehaviour {
 		{
 			Application.Quit();
 		}
+	}
+
+	void Awake() {
+		explosion = GetComponent<AudioSource> ();
 	}
 
 	public void playerDied()
