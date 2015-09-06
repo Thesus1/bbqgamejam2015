@@ -12,8 +12,14 @@ using System.Collections;
 
 public class Movements  : MonoBehaviour
 {
-	public float SPEED = 3.0f;
+	public const float SPEED = 3.0f;
+	public float _speed = 3.0f;
 	protected Vector3 _movementToApply;
+
+	public Movements()
+	{
+		//_speed = SPEED;
+	}
 	
 	protected void initMovement()
 	{
@@ -55,7 +61,7 @@ public class Movements  : MonoBehaviour
 	
 	protected void applyMovement()
 	{
-		Vector3 movementWithSpeed = _movementToApply * SPEED;
+		Vector3 movementWithSpeed = _movementToApply * _speed;
 		movementWithSpeed *= Time.deltaTime;
 		transform.Translate (movementWithSpeed);
 	}

@@ -44,10 +44,20 @@ public class Ship : Movements
 
 	public void damaged (int d)
 	{
-		health -= d;
-		if (health <= 0) {
-			SpecialEffectsHelper.Instance.Explosion(transform.position);
-			Destroy(this.gameObject);
+		if (transform.position.x < 9f) {
+			health -= d;
+			if (health <= 0) {
+				SpecialEffectsHelper.Instance.Explosion (transform.position);
+
+				Level mainLevel = GameObject.Find("Level").GetComponent<Level> ();
+				
+				if (mainLevel != null)
+				{
+					mainLevel.playerDied();
+				}
+
+				Destroy (this.gameObject);
+			}
 		}
 	}
 
