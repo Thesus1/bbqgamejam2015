@@ -17,7 +17,7 @@ public class Player : Ship
 	{
 		Debug.Log ("Start called");
 		_fire_mode = FIRE_PRESSED;
-		_weapon = new Weapon (this, 5);
+		_weapon = new Weapon (this, 0.25f, "gun");
 		_weapon.setDirection (Projectile.DIRECTION_RIGHT);
 		setLimitedTodScreen (true);
 		isEnemy = false;
@@ -43,6 +43,15 @@ public class Player : Ship
 				fire();
 			}
 		}
+
+		if (Input.GetKey (KeyCode.UpArrow))
+			moveUp ();
+		else if (Input.GetKey (KeyCode.DownArrow))
+			moveDown ();
+		if (Input.GetKey (KeyCode.LeftArrow))
+			moveLeft ();
+		else if (Input.GetKey (KeyCode.RightArrow))
+			moveRight ();
 
 		if(Input.GetKey (KeyCode.JoystickButton1))
 		{

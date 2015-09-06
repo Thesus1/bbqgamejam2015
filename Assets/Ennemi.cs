@@ -12,13 +12,22 @@ public class Ennemi : Ship {
 	public int type_weapon;
 	
 	void Start(){
-		boundTop = 5f;
-		boundDown = -3f;
-		timeToAttack = 5f;
 		isEnemy = true;
 		switch (type_weapon) {
 		case 1:
-			_weapon = new Weapon (this, 5);
+			_weapon = new Weapon (this, 0.4f, "gun");
+			break;
+		
+		case 2:
+			_weapon = new Weapon (this, 1f, "canon");
+			break;
+			
+		case 3:
+			_weapon = new Weapon (this, 0.15f, "minigun");
+			break;
+			
+		case 4:
+			_weapon = new Weapon (this, 2f, "mine");
 			break;
 		}
 	}

@@ -17,14 +17,13 @@ public class Weapon
 	GameObject _projectile;
 	Ship _parent;
 	int _projectileDirection;
-	int damage;
 
-	public Weapon (Ship parent, int d)
+	public Weapon (Ship parent, float fireRate, string name)
 	{
-		damage = d;
+		_fireRate = fireRate;
 		_parent = parent;
 		_nextFire = 0.0f;
-		_projectile = GameObject.Find ("projectile_test");
+		_projectile = GameObject.Find (name);
 		_projectileDirection = 0;
 	}
 
