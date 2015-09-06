@@ -42,6 +42,18 @@ public class Ennemi : Ship {
 
 	// Update is called once per frame
 	protected void Update () {
+		//Level up
+		if (transform.position.x < 9f) {
+			LevelUp lvlUp = this.gameObject.GetComponent<LevelUp> ();
+			if(lvlUp != null && lvlUp.used == false) {
+				Player player = GameObject.Find("Player").GetComponent<Player>();
+				if(player != null) {
+					player.level++;
+					lvlUp.used = true;
+				}
+			}
+		}
+
 		_movementToApply = new Vector3 ();
 
 		if (transform.position.x > _horizontal_pos) {

@@ -10,18 +10,29 @@ public class Player : Ship
 	float MIN_DEADZONE_PAD = 0.7f;
 
 	int _fire_mode;
+	Weapon _gun;
+	Weapon _shootgun;
+	Weapon _minigun;
+	Weapon _canon;
 
+	public int level = 3;
 
 	// Use this for initialization
 	void Start ()
 	{
 		Debug.Log ("Start called");
 		_fire_mode = FIRE_PRESSED;
-		type_weapon = 5;
-		_weapon = new Weapon (this, 0.25f, "shootgun");
-		_weapon.setDirection (Projectile.DIRECTION_RIGHT);
 		setLimitedTodScreen (true);
 		isEnemy = false;
+
+		_gun = new Weapon (this, 0.4f, "gun");
+		_gun.setDirection (Projectile.DIRECTION_RIGHT);
+		_shootgun = new Weapon (this, 0.5f, "shootgun");
+		_shootgun.setDirection (Projectile.DIRECTION_RIGHT);
+		_minigun = new Weapon (this, 0.15f, "minigun");
+		_minigun.setDirection (Projectile.DIRECTION_RIGHT);
+		_canon = new Weapon (this, 1f, "canon");
+		_canon.setDirection (Projectile.DIRECTION_RIGHT);
 	}
 
 
@@ -29,21 +40,6 @@ public class Player : Ship
 	void Update ()
 	{
 		initMovement();
-
-		if(_fire_mode == FIRE_KEY_DOWN)
-		{
-			if (Input.GetKeyDown (KeyCode.JoystickButton0) || Input.GetKeyDown (KeyCode.A))
-			{
-				fire();
-			}
-		}
-		else if (_fire_mode == FIRE_PRESSED)
-		{
-			if(Input.GetKey(KeyCode.JoystickButton0) || Input.GetKeyDown (KeyCode.A))
-			{
-				fire();
-			}
-		}
 
 		if (Input.GetKey (KeyCode.UpArrow))
 			moveUp ();
@@ -54,19 +50,47 @@ public class Player : Ship
 		else if (Input.GetKey (KeyCode.RightArrow))
 			moveRight ();
 
-		if(Input.GetKey (KeyCode.JoystickButton1))
+		//A
+		if(_fire_mode == FIRE_KEY_DOWN)
 		{
-			Debug.Log("B press");
+			if (Input.GetKey (KeyCode.JoystickButton0) || Input.GetKey (KeyCode.A))
+			{
+				type_weapon = 1;
+				if(level < 5) _gun.fire ();
+			}
 		}
-		if(Input.GetKey (KeyCode.JoystickButton2))
+		else if (_fire_mode == FIRE_PRESSED)
 		{
-			Debug.Log("X press");
+			if(Input.GetKey(KeyCode.JoystickButton0) || Input.GetKey (KeyCode.A))
+			{
+				type_weapon = 1;
+				if(level < 5) _gun.fire ();
+			}
 		}
-		if(Input.GetKey (KeyCode.JoystickButton3))
+
+		//B
+		if(Input.GetKey (KeyCode.JoystickButton1) || Input.GetKey (KeyCode.Z))
 		{
-			Debug.Log("Y press");
+			type_weapon = 5;
+			if(level < 4) _shootgun.fire ();
 		}
-		if(Input.GetKey (KeyCode.JoystickButton4))
+
+		//X
+		if(Input.GetKey (KeyCode.JoystickButton2) || Input.GetKey (KeyCode.E))
+		{
+			type_weapon = 3;
+			if(level < 3) _minigun.fire ();
+		}
+
+		//Y
+		if(Input.GetKey (KeyCode.JoystickButton3) || Input.GetKey (KeyCode.R))
+		{
+			type_weapon = 2;
+			if(level < 2) _canon.fire ();
+		}
+
+		//Osef
+		/*if(Input.GetKey (KeyCode.JoystickButton4))
 		{
 			Debug.Log("LB press");
 		}
@@ -89,7 +113,7 @@ public class Player : Ship
 		if(Input.GetKey (KeyCode.JoystickButton9))
 		{
 			Debug.Log("L Stick press");
-		}
+		}*/
 
 		/// Sticks
 		float axisVertical = Input.GetAxis ("Vertical");
