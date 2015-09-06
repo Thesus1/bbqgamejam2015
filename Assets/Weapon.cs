@@ -16,6 +16,7 @@ public class Weapon
 	float _fireRate = 0.25f;
 	GameObject _projectile;
 	Ship _parent;
+	int _projectileDirection;
 
 
 	public Weapon (Ship parent)
@@ -23,12 +24,18 @@ public class Weapon
 		_parent = parent;
 		_nextFire = 0.0f;
 		_projectile = GameObject.Find ("projectile_test");
+		_projectileDirection = 0;
 	}
 
 
 	public void setFireRate(float fireRate)
 	{
 		_fireRate = fireRate;
+	}
+
+	public void setDirection(int direction)
+	{
+		_projectileDirection = direction;
 	}
 
 
@@ -43,8 +50,7 @@ public class Weapon
 		if (Time.time > _nextFire)
 		{
 			_nextFire = Time.time + _fireRate;
-			_parent.createProjectile(_projectile);
-
+			_parent.createProjectile(_projectile, _projectileDirection);
 		}
 	}
 }

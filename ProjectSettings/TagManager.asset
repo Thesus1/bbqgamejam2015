@@ -16,11 +16,11 @@ TagManager:
   - 
   - 
   - 
-  - Bullets_player
-  - Ennemy
-  - Bullets ennemy
-  - Bonus
-  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -40,4 +40,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 594577607
+    locked: 0
+  - name: Bullets_player
+    uniqueID: 3562557977
+    locked: 0
+  - name: Bonus
+    uniqueID: 1838999935
+    locked: 0
+  - name: Bullets ennemy
+    uniqueID: 3666822707
+    locked: 0
+  - name: Ennemy
+    uniqueID: 4069641985
     locked: 0

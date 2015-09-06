@@ -12,7 +12,8 @@ using System.Collections;
 
 public class Ship : Movements
 {
-	public float DEFAULT_SIZE_VERTICAL = 4.58f;
+	public float DEFAULT_SIZE_VERTICAL_UP = 4.58f;
+	public float DEFAULT_SIZE_VERTICAL_DOWN = 3f;
 	public float DEFAULT_SIZE_HORIZONTAL = 8.55f;
 	float _sizeVertical;
 	float _sizeHorizontal;
@@ -22,7 +23,7 @@ public class Ship : Movements
 
 	public Ship ()
 	{
-		_sizeVertical = DEFAULT_SIZE_VERTICAL;
+		_sizeVertical = DEFAULT_SIZE_VERTICAL_UP;
 		_sizeHorizontal = DEFAULT_SIZE_HORIZONTAL;
 		_isLimitedToScreen = false;
 	}
@@ -49,7 +50,7 @@ public class Ship : Movements
 
 			if (_movementToApply.y > 0 && transform.position.y > _sizeVertical) {
 				_movementToApply.y = 0;
-			} else if (_movementToApply.y < 0 && transform.position.y < -_sizeVertical) {
+			} else if (_movementToApply.y < 0 && transform.position.y < -DEFAULT_SIZE_VERTICAL_DOWN) {
 				_movementToApply.y = 0;
 			}
 
@@ -75,7 +76,7 @@ public class Ship : Movements
 		}
 	}
 
-	public void createProjectile(GameObject projectile)
+	public void createProjectile(GameObject projectile, int direction)
 	{
 		Object newBullet = Instantiate (projectile, transform.position, transform.rotation);
 
@@ -85,6 +86,11 @@ public class Ship : Movements
 
 			if(scriptBullet != null)
 			{
+				if(direction != 0)
+				{
+					scriptBullet.setDirection(direction);
+				}
+
 				scriptBullet.startFire();
 			}
 		}
